@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.95em;
+}
+
+.input-section {
+    margin-bottom: 30px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+#prefix-input,
+#count-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+}
+
+#prefix-input:focus,
+#count-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+#generate-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+}
+
+.result-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.result-header h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.result-summary {
+    color: #666;
+    font-size: 0.95em;
+}
+
+.barcodes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.batch-download-controls {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.select-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.select-all-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+    user-select: none;
+}
+
+.select-all-label input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.batch-download-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.batch-download-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.batch-download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.barcode-item {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #eee;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex;
+    gap: 15px;
+    position: relative;
+}
+
+.barcode-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.barcode-item-checkbox {
+    flex-shrink: 0;
+    padding-top: 5px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #667eea;
+    border-radius: 4px;
+    background: white;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.barcode-item-content {
+    flex: 1;
+}
+
+.barcode-item-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.barcode-item-number {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.ean-code {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #667eea;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 15px;
+}
+
+.product-name-section {
+    margin-bottom: 15px;
+}
+
+.product-name-section label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.product-name-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+.product-name-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.barcode-display {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.product-name-display {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px;
+    padding: 0 5px;
+    word-wrap: break-word;
+}
+
+.barcode-display svg {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.code-breakdown {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    font-size: 0.9em;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+}
+
+.breakdown-item .label {
+    color: #666;
+    font-weight: 500;
+}
+
+.breakdown-item .value {
+    color: #333;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.error-message {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fee;
+    color: #c33;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #fcc;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .ean-code {
+        font-size: 1.2em;
+        letter-spacing: 1px;
+    }
+
+    .barcode-item {
+        padding: 15px;
+        flex-direction: column;
+    }
+
+    .barcode-item-checkbox {
+        align-self: flex-start;
+    }
+
+    .select-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .batch-download-btn {
+        width: 100%;
+    }
+}
