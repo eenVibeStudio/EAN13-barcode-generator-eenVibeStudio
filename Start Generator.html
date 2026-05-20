@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -11,28 +11,20 @@
 <body>
     <div class="container">
         <header>
-                <div class="header-top">
-                    <h1 data-i18n="title">EAN-13 条形码生成器</h1>
-                    <select id="lang-select" aria-label="Language selector">
-                        <option value="zh">简体中文</option>
-                        <option value="en">English</option>
-                        <option value="nl">Nederlands</option>
-                    </select>
-                </div>
-                <p class="subtitle" data-i18n="subtitle">输入0-8位自定义数字作为前缀，自动生成完整的EAN-13条形码</p>
+            <h1>EAN-13 条形码生成器</h1>
+            <p class="subtitle">输入0-8位自定义数字作为前缀，自动生成完整的EAN-13条形码</p>
         </header>
 
         <div class="input-section">
-            <label for="prefix-input" data-i18n="label_prefix">输入前缀数字（0-8位，例如：690 或 69012）：</label>
+            <label for="prefix-input">输入前缀数字（0-8位，例如：690 或 69012）：</label>
             <input 
                 type="text" 
                 id="prefix-input" 
-                data-i18n-placeholder="placeholder_prefix"
                 placeholder="例如: 690 或 69012"
                 maxlength="8"
                 pattern="[0-9]{0,8}"
             >
-            <label for="count-input" data-i18n="label_count">生成数量：</label>
+            <label for="count-input">生成数量：</label>
             <input 
                 type="number" 
                 id="count-input" 
@@ -46,17 +38,17 @@
 
         <div class="result-section" id="result-section" style="display: none;">
             <div class="result-header">
-                <h2 data-i18n="result_header">生成的EAN-13条形码</h2>
+                <h2>生成的EAN-13条形码</h2>
                 <div class="result-summary" id="result-summary"></div>
             </div>
             <div class="batch-download-controls" id="batch-download-controls" style="display: none;">
                 <div class="select-controls">
                     <label class="select-all-label">
                         <input type="checkbox" id="select-all-checkbox">
-                        <span data-i18n="select_all">全选</span>
+                        <span>全选</span>
                     </label>
                     <div class="scale-selector">
-                        <label for="download-scale" data-i18n="label_ratio">长宽比:</label>
+                        <label for="download-scale">长宽比:</label>
                         <select id="download-scale">
                             <option value="5:1">5:1 (宽)</option>
                             <option value="4:1" selected>4:1 (推荐)</option>
@@ -65,7 +57,7 @@
                         </select>
                     </div>
                     <button id="batch-download-btn" class="batch-download-btn">
-                        📦 <span data-i18n="download_selected">下载选中的条形码</span> (<span id="download-count">0</span>)
+                        📦 下载选中的条形码 (0)
                     </button>
                 </div>
             </div>
