@@ -15,12 +15,12 @@
 
 #### Windows（批处理）
 
-1. 双击 `启动服务器.bat` 启动服务器。
+1. 双击 `start-server.bat` 启动服务器。
 2. 在浏览器中访问 `http://localhost:8000`。
 
 #### PowerShell
 
-1. 右键 `启动服务器.ps1`，选择使用 PowerShell 运行。
+1. 右键 `start-server.ps1`，选择使用 PowerShell 运行。
 2. 打开 `http://localhost:8000`。
 
 ### 方法三：Python 简易服务器
@@ -52,8 +52,8 @@ python -m http.server 8000
 - `index.html` — 主页面
 - `app.js` — 程序逻辑
 - `style.css` — 样式文件
-- `启动服务器.bat` — Windows 启动脚本
-- `启动服务器.ps1` — PowerShell 启动脚本
+- `start-server.bat` — Windows 启动脚本
+- `start-server.ps1` — PowerShell 启动脚本
 
 ## 注意事项
 

@@ -15,12 +15,12 @@ Als direct openen problemen veroorzaakt (bijv. CDN-resources), start dan een lok
 
 #### Windows (batch)
 
-1. Dubbelklik `启动服务器.bat` om de server te starten.
+1. Dubbelklik `start-server.bat` om de server te starten.
 2. Open `http://localhost:8000` in uw browser.
 
 #### PowerShell
 
-1. Rechtsklik `启动服务器.ps1` en voer uit met PowerShell.
+1. Rechtsklik `start-server.ps1` en voer uit met PowerShell.
 2. Open `http://localhost:8000`.
 
 ### Optie 3 — Python eenvoudige server
@@ -52,8 +52,8 @@ Open daarna `http://localhost:8000`.
 - `index.html` — hoofdpagina
 - `app.js` — kernlogica
 - `style.css` — stijlbestand
-- `启动服务器.bat` — Windows server starter
-- `启动服务器.ps1` — PowerShell server starter
+- `start-server.bat` — Windows server starter
+- `start-server.ps1` — PowerShell server starter
 
 ## Opmerkingen
 

@@ -15,12 +15,12 @@ If opening the file directly causes CDN or resource issues, run a local server:
 
 #### Windows (batch)
 
-1. Double-click `启动服务器.bat` to start the server.
+1. Double-click `start-server.bat` to start the server.
 2. Open `http://localhost:8000` in your browser.
 
 #### PowerShell
 
-1. Right-click `启动服务器.ps1` and run with PowerShell.
+1. Right-click `start-server.ps1` and run with PowerShell.
 2. Open `http://localhost:8000` in your browser.
 
 ### Option 3 — Python simple server
@@ -52,8 +52,8 @@ Then open `http://localhost:8000`.
 - `index.html` — main page
 - `app.js` — core logic
 - `style.css` — styles
-- `启动服务器.bat` — Windows server launcher
-- `启动服务器.ps1` — PowerShell server launcher
+- `start-server.bat` — Windows server launcher
+- `start-server.ps1` — PowerShell server launcher
 
 ## Notes
 
