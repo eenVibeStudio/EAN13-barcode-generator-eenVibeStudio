@@ -24,7 +24,14 @@ const I18N = {
         product_name_label: '产品名称（可选）：',
         breakdown_prefix: '前缀',
         breakdown_product_code: '产品代码',
-        breakdown_check_digit: '校验位'
+        breakdown_check_digit: '校验位',
+        breakdown_prefix_with_len: '前缀（{len}位）：',
+        breakdown_product_code_with_len: '产品代码（{len}位）：',
+        breakdown_check_digit_with_len: '校验位（{len}位）：',
+        ratio_5_1: '5:1 (宽)',
+        ratio_4_1: '4:1 (推荐)',
+        ratio_3_1: '3:1 (标准)',
+        ratio_2_1: '2:1 (正方)'
     },
     en: {
         title: 'EAN-13 Barcode Generator',
@@ -50,7 +57,14 @@ const I18N = {
         product_name_label: 'Product name (optional):',
         breakdown_prefix: 'Prefix',
         breakdown_product_code: 'Product code',
-        breakdown_check_digit: 'Check digit'
+        breakdown_check_digit: 'Check digit',
+        breakdown_prefix_with_len: 'Prefix ({len} digits):',
+        breakdown_product_code_with_len: 'Product code ({len} digits):',
+        breakdown_check_digit_with_len: 'Check digit ({len} digit):',
+        ratio_5_1: '5:1 (wide)',
+        ratio_4_1: '4:1 (recommended)',
+        ratio_3_1: '3:1 (standard)',
+        ratio_2_1: '2:1 (square)'
     },
     nl: {
         title: 'EAN-13 Streepjescode Generator',
@@ -76,12 +90,25 @@ const I18N = {
         product_name_label: 'Productnaam (optioneel):',
         breakdown_prefix: 'Prefix',
         breakdown_product_code: 'Productcode',
-        breakdown_check_digit: 'Controlecijfer'
+        breakdown_check_digit: 'Controlecijfer',
+        breakdown_prefix_with_len: 'Prefix ({len} cijfers):',
+        breakdown_product_code_with_len: 'Productcode ({len} cijfers):',
+        breakdown_check_digit_with_len: 'Controlecijfer ({len} cijfer):',
+        ratio_5_1: '5:1 (breed)',
+        ratio_4_1: '4:1 (aanbevolen)',
+        ratio_3_1: '3:1 (standaard)',
+        ratio_2_1: '2:1 (vierkant)'
     }
 };
 
 function getLang() {
-    return localStorage.getItem('lang') || (navigator.language && navigator.language.startsWith('nl') ? 'nl' : (navigator.language && navigator.language.startsWith('en') ? 'en' : 'zh'));
+    const stored = localStorage.getItem('lang');
+    if (stored) return stored;
+    const nav = navigator.language || navigator.userLanguage || '';
+    if (nav.startsWith('nl')) return 'nl';
+    if (nav.startsWith('zh')) return 'zh';
+    // default to English
+    return 'en';
 }
 
 function setLang(lang) {
@@ -111,6 +138,12 @@ function applyTranslations() {
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         el.placeholder = t(key);
+    });
+
+    // option texts
+    document.querySelectorAll('[data-i18n-option]').forEach(opt => {
+        const key = opt.getAttribute('data-i18n-option');
+        opt.textContent = t(key);
     });
 
     // buttons and dynamic labels
@@ -419,18 +452,18 @@ function createBarcodeItem(result, index, total) {
                 <svg id="barcode-${index}"></svg>
             </div>
             <div class="code-breakdown">
-                <div class="breakdown-item">
-                    <span class="label">${t('breakdown_prefix')}（${result.prefixLength}位）：</span>
-                    <span class="value">${result.prefix || '(无)'}</span>
-                </div>
-                <div class="breakdown-item">
-                    <span class="label">${t('breakdown_product_code')}（${result.productCodeLength}位）：</span>
-                    <span class="value">${result.productCode}</span>
-                </div>
-                <div class="breakdown-item">
-                    <span class="label">${t('breakdown_check_digit')}（1位）：</span>
-                    <span class="value">${result.checkDigit}</span>
-                </div>
+                    <div class="breakdown-item">
+                        <span class="label">${t('breakdown_prefix_with_len', { len: result.prefixLength })}</span>
+                        <span class="value">${result.prefix || '(无)'}</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="label">${t('breakdown_product_code_with_len', { len: result.productCodeLength })}</span>
+                        <span class="value">${result.productCode}</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="label">${t('breakdown_check_digit_with_len', { len: 1 })}</span>
+                        <span class="value">${result.checkDigit}</span>
+                    </div>
             </div>
         </div>
     `;
